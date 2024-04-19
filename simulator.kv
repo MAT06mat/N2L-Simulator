@@ -1,0 +1,41 @@
+# :import dp kivy.metrics.dp
+# :import Clock kivy.clock.Clock
+
+
+<Simulator>:
+    size_hint: (1, 1)
+
+<Form>:
+    orientation: 'vertical'
+    size_hint: (None, 1)
+    width: "300dp"
+    canvas.before:
+        Color:
+            rgba: (.8, .8, .8, 1)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    canvas.after:
+        Color:
+            rgba: (.2, .2, .2, 1)
+        Line:
+            width: 2.
+            rectangle: (self.x, self.y, 0, self.height)
+
+<FormItem>:
+    orientation: 'vertical'
+    Label:
+        text: root.title
+        color: (.2, .2, .2)
+        font_size: root.width / 10
+    BoxLayout:
+        size_hint: (1, 0.35)
+        TextInput:
+            id: text_input
+            on_text_validate: root.on_release
+            halign: 'center'
+            font_size: root.width / 10
+        Button:
+            text: 'Valider'
+            size_hint: (.25, 1)
+            on_release: root.on_release()
